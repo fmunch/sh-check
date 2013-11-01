@@ -28,10 +28,10 @@ case "$FANCYTTY" in
 esac
 
 if [ "$FANCYTTY" = 'true' ]; then
-  COLOR_RED=$(tput setaf 1)
-  COLOR_GREEN=$(tput setaf 2)
-  COLOR_YELLOW=$(tput setaf 3)
-  COLOR_NORMAL=$(tput op)
+  COLOR_RED=$($TPUT setaf 1)
+  COLOR_GREEN=$($TPUT setaf 2)
+  COLOR_YELLOW=$($TPUT setaf 3)
+  COLOR_NORMAL=$($TPUT op)
 else
   COLOR_RED=
   COLOR_GREEN=
@@ -61,7 +61,7 @@ log_check_begin() {
 }
 
 log_check_end() {
-  [ "$FANCYTTY" = 'true' ] && tput hpa "$LOG_END_HPA"
+  [ "$FANCYTTY" = 'true' ] && $TPUT hpa "$LOG_END_HPA"
   if [ "$1" = 0 ]; then
     echo "[${COLOR_GREEN} OK ${COLOR_NORMAL}]"
   elif [ "$1" = 255 ]; then
