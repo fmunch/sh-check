@@ -51,6 +51,9 @@ fi
 
 # Main check function, called to perform one of the checks.
 #
+# When the callback function is called, stdout is caught
+# and printed after the check, but stderr is not caught.
+#
 # shcheck <checkname> <callback> [args...]
 #   checkname: Name of the check to perform.
 #   callback: Function to call to perform the check.
@@ -61,9 +64,11 @@ shcheck() {
   shift 2
 
   shcheck_log_begin "$SHCHECK_CHECK_COMMENT"
-  "$SHCHECK_CHECK_COMMAND" "$@"
+  SHCHECK_CALLBACK_OUTPUT=$("$SHCHECK_CHECK_COMMAND" "$@")
 
   shcheck_log_end $?
+  [ -n "$SHCHECK_CALLBACK_OUTPUT" ] && echo "$SHCHECK_CALLBACK_OUTPUT"
+
   SHCHECK_CURRENT_CHECK=$(($SHCHECK_CURRENT_CHECK + 1))
 }
 
