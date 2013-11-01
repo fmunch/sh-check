@@ -21,8 +21,8 @@ Sample output:
 
 ```
 $ ./yourscript.sh
-[1/2] Test 1...                                                     [FAIL]
-[2/2] Test 2...                                                     [ OK ]
+[1/2] Checking if curl is available...                                [FAIL]
+[2/2] Checking is /tmp is writable...                                 [ OK ]
 ```
 
 Advanced usage
