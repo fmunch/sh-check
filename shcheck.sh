@@ -4,7 +4,7 @@
 # https://github.com/fmunch/sh-check
 #
 # Environment:
-#  - SHCHECK_NB_CHECKS (mandatory): total number of checks
+#  - SHCHECK_NB_CHECKS: total number of checks
 #  - SHCHECK_LOG_END_HPA: columns at the left of the result tags
 #  - SHCHECK_FANCYTTY: if set to "true" / "false", forces colored / raw output
 
@@ -112,7 +112,7 @@ shcheck_log_begin() {
   if [ -n "$SHCHECK_NB_CHECKS" ]; then
     printf "[%${#SHCHECK_NB_CHECKS}s/%s] %s... " "$SHCHECK_CURRENT_CHECK" "$SHCHECK_NB_CHECKS" "$1"
   else
-    printf "[%s] %s... " "$SHCHECK_CURRENT_CHECK" "$1"
+    printf "[%3s] %s... " "$SHCHECK_CURRENT_CHECK" "$1"
   fi
 }
 
