@@ -45,19 +45,19 @@ else
 fi
 
 
-check() {
+shcheck() {
   SHCHECK_CHECK_COMMENT="$1"
   SHCHECK_CHECK_COMMAND="$2"
   shift 2
 
-  log_check_begin "$SHCHECK_CHECK_COMMENT"
+  shcheck_log_begin "$SHCHECK_CHECK_COMMENT"
   "$SHCHECK_CHECK_COMMAND" "$@"
 
-  log_check_end $?
+  shcheck_log_end $?
   SHCHECK_CURRENT_CHECK=$(($SHCHECK_CURRENT_CHECK + 1))
 }
 
-log_check_begin() {
+shcheck_log_begin() {
   if [ -n "$SHCHECK_NB_CHECKS" ]; then
     printf "[%${#SHCHECK_NB_CHECKS}s/%s] %s... " "$SHCHECK_CURRENT_CHECK" "$SHCHECK_NB_CHECKS" "$1"
   else
@@ -65,7 +65,7 @@ log_check_begin() {
   fi
 }
 
-log_check_end() {
+shcheck_log_end() {
   [ "$SHCHECK_FANCYTTY" = 'true' ] && $SHCHECK_TPUT hpa "$SHCHECK_LOG_END_HPA"
   if [ "$1" = 0 ]; then
     echo "[${SHCHECK_COLOR_GREEN} OK ${SHCHECK_COLOR_NORMAL}]"
