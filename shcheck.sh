@@ -98,6 +98,14 @@ shcheck_file_executable() {
   [ -x "$1" ] && return 0 || return 1
 }
 
+# Callback checking if a folder is writable.
+#
+# shcheck_folder_writable <folder>
+#   folder: Folder to look for.
+shcheck_folder_writable() {
+  [ -d "$1" -a -w "$1" ] && return 0 || return 1
+}
+
 # Callback checking if a command is available in $PATH.
 #
 # shcheck_command_available <command>
